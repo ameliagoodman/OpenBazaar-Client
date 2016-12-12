@@ -477,10 +477,12 @@ module.exports = pageVw.extend({
         countryList = countries.get('countries'),
         currencyList = countries.get('countries'),
         languageList = languages.get('languages'),
+        languageSpokenList = languages.get('languages'),
         country = this.$('#country'),
         ship_country = this.$('#settingsShipToCountry'),
         currency = this.$('#currency_code'),
         language = this.$('#language'),
+        languagesSpoken = this.$('#languagesSpoken'),
         generalForm = this.$('#generalForm'),
         advancedForm = this.$('#advancedForm'),
         user = this.model.get('user'),
@@ -488,6 +490,7 @@ module.exports = pageVw.extend({
         country_str = "",
         currency_str = "",
         language_str = "",
+        language_spoken_str = "",
         pageNSFW = this.model.get('page').profile.nsfw,
         bitcoinUnit = app.getBitcoinUnit(),
         notifications = user.notifications,
@@ -559,10 +562,17 @@ module.exports = pageVw.extend({
       language_str += language_option[0].outerHTML;
     });
 
+    __.each(languageSpokenList, function(l){
+      var language_spoken_option = $('<option value="'+l.langCode+'">'+l.langName+'</option>');
+      language_spoken_option.attr("selected", user.language == l.langCode);
+      language_spoken_str += language_spoken_option[0].outerHTML;
+    });
+
     ship_country.html(ship_country_str);
     currency.html(currency_str);
     country.html(country_str);
     language.html(language_str);
+    languagesSpoken.html(language_str);
 
     //set moderator status
     this.$('#moderatorForm').find('input[name=moderator]').val([String(moderatorStatus)]);

@@ -339,6 +339,24 @@
             </div>
             <div class="flexRow custCol-border">
               <div class="rowItem positionWrapper noOverflow">
+                <div class="textOpacity75 fontSize14"><%= polyglot.t('LanguagesSpoken') %></div>
+                <% if(ob.ownPage) { %>
+                  <a href="#settings/page" class="userPageEditBtn">
+                    <div class="btn btn-txt custCol-secondary fontSize12 js-editPage">
+                      <span class="ion-edit fontSize10 marginRight2 textOpacity1"></span>
+                      <%= polyglot.t('Edit') %>
+                    </div>
+                  </a>
+                <%}%>
+                <% if(ob.page.profile.languagesSpoken) { %>
+                <a href="mailto:<%= ob.page.profile.email %>"><%= ob.page.profile.languagesSpoken %></a> <span class="ion-android-open fontSize10"></span>
+                <%}else{%>
+                <%= polyglot.t('NotProvided') %>
+                <%}%>
+              </div>
+            </div>
+            <div class="flexRow custCol-border">
+              <div class="rowItem positionWrapper noOverflow">
               <% if(ob.ownPage) { %>
                 <a href="#settings/page" class="userPageEditBtn">
                   <div class="btn btn-txt custCol-secondary fontSize12 js-editPage">
